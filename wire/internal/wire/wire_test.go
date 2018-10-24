@@ -456,7 +456,7 @@ func loadTestCase(root string, wireGoSrc []byte) (*testCase, error) {
 	}
 	return &testCase{
 		name:                 name,
-		pkg:                  string(bytes.TrimSpace(pkg)),
+		pkg:                  filepath.FromSlash(string(bytes.TrimSpace(pkg))),
 		goFiles:              goFiles,
 		wantWireOutput:       wantWireOutput,
 		wantProgramOutput:    wantProgramOutput,
