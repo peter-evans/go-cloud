@@ -64,6 +64,7 @@ func TestWire(t *testing.T) {
 		tests = append(tests, test)
 	}
 	wd := filepath.Join(magicGOPATH(), "src")
+	t.Logf("working directory: %s", wd)
 
 	if *setup.Record {
 		if _, err := os.Stat(filepath.Join(build.Default.GOROOT, "bin", "go")); err != nil {
@@ -77,6 +78,7 @@ func TestWire(t *testing.T) {
 
 			// Run Wire from a fake build context.
 			bctx := test.buildContext()
+			t.Logf("test.pkg: %s", test.pkg)
 			gen, errs := Generate(bctx, wd, test.pkg)
 			if len(gen) > 0 {
 				defer t.Logf("wire_gen.go:\n%s", gen)
